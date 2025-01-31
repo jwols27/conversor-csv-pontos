@@ -1,0 +1,8 @@
+{
+    "files": [
+        "LabeledTextField.qml",
+        "conversor.py",
+        "main.py",
+        "main.qml"
+    ]
+}

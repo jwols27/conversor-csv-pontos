@@ -1,0 +1,5 @@
+build/
+dist/
+Conversor CSV-Pontos.desktop
+.venv/
+__pycache__/
