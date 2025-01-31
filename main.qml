@@ -9,6 +9,7 @@ ApplicationWindow {
     height: 500
     title: "Conversor CSV -> Pontos"
     SystemPalette { id: myPalette; colorGroup: SystemPalette.Active }
+    color: myPalette.window;
 
     FileDialog {
         id: fileDialog
