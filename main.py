@@ -1,5 +1,6 @@
-import sys
 import os
+import sys
+import platform
 from pathlib import Path
 
 from conversor import ConversorCoordernadas
@@ -15,6 +16,10 @@ class FileProcessor(QObject):
     @Slot(str, float, float, float)
     def processFile(self, fileUrl, norte, este, altura):
         filePath = fileUrl.replace("file://", "")
+        if platform.system() == 'Windows':
+            filePath = filePath[:0] + filePath[1:]
+            print(filePath)
+
 
         if not os.path.exists(filePath):
             self.fileProcessed.emit("Arquivo não encontrado")
