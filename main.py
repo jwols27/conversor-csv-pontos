@@ -3,7 +3,7 @@ import os
 os.environ["LANG"] = "en_US.UTF-8"
 
 from nicegui import app, ui, events
-from Services import CalculadoraGeografica, ConversorCoordernadas
+from services import CalculadoraGeografica, ConversorCoordernadas
 
 
 class Decimal:
