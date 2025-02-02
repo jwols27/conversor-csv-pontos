@@ -10,7 +10,7 @@ class CalculadoraGeografica():
         "deltaZ": 0.0,
     }
 
-    def getMeridianoCentral(lon):
+    def getMeridianoCentral(self, lon):
         zona = math.floor((lon + 180) / 6) + 1
         return (6 * zona) - 183
 
