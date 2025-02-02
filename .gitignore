@@ -1,8 +1,12 @@
-build/
-dist/
 .venv/
 __pycache__/
 
-Conversor CSV-Pontos.desktop
+# pyinstaller
+build/
+dist/
+conversor-csv-pontos.spec
 conversor-csv-pontos.pyproject
 conversor-csv-pontos.pyproject.user
+
+# Linux
+Conversor CSV-Pontos.desktop
