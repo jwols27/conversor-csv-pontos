@@ -24,6 +24,6 @@ ColumnLayout {
         placeholderText: root.label
         font.pixelSize: 16
         Layout.fillWidth: true
-        validator: DoubleValidator { bottom: 0; notation: DoubleValidator.StandardNotation; locale: "en" }
+        validator: DoubleValidator { notation: DoubleValidator.StandardNotation; locale: "en" }
     }
 }

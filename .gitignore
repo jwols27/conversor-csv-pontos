@@ -1,5 +1,8 @@
 build/
 dist/
-Conversor CSV-Pontos.desktop
 .venv/
 __pycache__/
+
+Conversor CSV-Pontos.desktop
+conversor-csv-pontos.pyproject
+conversor-csv-pontos.pyproject.user

@@ -2,6 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 2.15
 import Qt.labs.platform
+import "Components"
+
 
 ApplicationWindow {
     visible: true
@@ -26,6 +28,8 @@ ApplicationWindow {
 
     Button {
         text: "Selecione um arquivo CSV"
+        width: 200
+        height: 30
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 20

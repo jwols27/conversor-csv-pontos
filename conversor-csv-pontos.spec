@@ -5,7 +5,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('main.qml', '.'), ('LabeledTextField.qml', '.'), ('icon.png', '.')],
+    datas=[('main.qml', '.'), ('Components/LabeledTextField.qml', 'Components'), ('icon.png', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

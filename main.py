@@ -3,11 +3,11 @@ import sys
 import platform
 from pathlib import Path
 
-from conversor import ConversorCoordernadas
+from Services.conversor import ConversorCoordernadas
 
 from PySide6.QtWidgets import QApplication
 from PySide6.QtQml import QQmlApplicationEngine
-from PySide6.QtCore import QObject, Signal, Slot, QUrl
+from PySide6.QtCore import QObject, Signal, Slot
 from PySide6.QtGui import QIcon
 
 class FileProcessor(QObject):
