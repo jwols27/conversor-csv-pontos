@@ -3,4 +3,4 @@ pyproj
 nicegui
 pyinstaller
 pywebview
-pywebview[qt]
+userpaths

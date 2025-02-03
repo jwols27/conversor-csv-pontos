@@ -2,9 +2,9 @@ import os
 
 os.environ["LANG"] = "en_US.UTF-8"
 
-from nicegui import app, ui, events
+import userpaths
+from nicegui import app, ui
 from services import CalculadoraGeografica, ConversorCoordernadas
-
 
 class Decimal:
     def __init__(self):
@@ -59,15 +59,15 @@ def update_alt(_):
 
 
 def converterCoordenadas():
-    lat = decimal.lat if hasattr(decimal, "lat") else 0
-    lon = decimal.lon if hasattr(decimal, "lon") else 0
+    lat = decimal.lat if hasattr(decimal, "lat") and decimal.lat is not None else 0
+    lon = decimal.lon if hasattr(decimal, "lon") and decimal.lon is not None else 0
     baseLevantada.converterCoordenadas(lat, lon)
 
 
 async def pick_file():
     file_types = ("Arquivos CSV (*.csv)",)
     files = await app.native.main_window.create_file_dialog(
-        allow_multiple=True, file_types=file_types, directory=os.path.expanduser("~")
+        allow_multiple=True, file_types=file_types, directory=userpaths.get_my_documents()
     )
     if files is None:
         return
