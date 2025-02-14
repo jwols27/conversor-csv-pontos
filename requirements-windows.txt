@@ -1,6 +1,0 @@
-pandas
-pyproj
-nicegui
-pyinstaller
-pywebview
-userpaths
