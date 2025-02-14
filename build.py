@@ -1,3 +1,4 @@
+# pipenv run python build.py
 import nicegui
 from pathlib import Path
 import subprocess
