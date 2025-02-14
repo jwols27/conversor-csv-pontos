@@ -1,10 +1,6 @@
-# pipenv run python build.py
-import nicegui
-from pathlib import Path
+# uv run build.py
 import subprocess
 from platform import system
-
-static_dir = Path(nicegui.__file__).parent
 
 windows = ''
 if system() == 'Windows':
