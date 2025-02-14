@@ -4,40 +4,30 @@ os.environ["LANG"] = "en_US.UTF-8"
 
 import userpaths
 from nicegui import app, ui
-from services import CalculadoraGeografica, ConversorCoordernadas
+from utils import CalculadoraGeografica, ConversorCoordernadas
 
 class Decimal:
-    def __init__(self):
-        self.lat: float  # y
-        self.lon: float  # x
-
+    lat: float  # y
+    lon: float  # x
 
 diffs = {"norte": 0, "este": 0, "altura": 0}
 
 
-class BaseLevantada:
-    def __init__(self):
-        self.norte: float  # y
-        self.este: float  # x
-        self.altura: float
+class BaseLevantamento:
+    norte: float  # y
+    este: float  # x
+    altura: float
 
-    def converterCoordenadas(self, lat, lon):
+    def calcular_coordenadas(self, lat, lon):
         calc = CalculadoraGeografica()
         x, y = calc.geo_para_utm(lat, lon)
         self.norte = y
         self.este = x
 
 
-class BaseCorrigida:
-    def __init__(self):
-        self.norte: float  # y
-        self.este: float  # x
-        self.altura: float
-
-
 decimal = Decimal()
-baseLevantada = BaseLevantada()
-baseCorrigida = BaseCorrigida()
+baseLevantada = BaseLevantamento()
+baseCorrigida = BaseLevantamento()
 
 
 def update_norte(_):
@@ -58,10 +48,10 @@ def update_alt(_):
     diffs.update(altura=round(cor - lev, 3))
 
 
-def converterCoordenadas():
-    lat = decimal.lat if hasattr(decimal, "lat") and decimal.lat is not None else 0
-    lon = decimal.lon if hasattr(decimal, "lon") and decimal.lon is not None else 0
-    baseLevantada.converterCoordenadas(lat, lon)
+def converter_coordenadas():
+    lat = decimal.lat if decimal.lat is not None else 0
+    lon = decimal.lon if decimal.lon is not None else 0
+    baseLevantada.calcular_coordenadas(lat, lon)
 
 
 async def pick_file():
@@ -79,6 +69,7 @@ async def pick_file():
 
 
 ui.colors(primary="#67538d")
+ui.add_head_html('<style>body {background-color: #e2e2e2; }</style>')
 with ui.column(align_items="center").classes("fixed-center").classes(
     "w-[80%] max-w-3xl"
 ):
@@ -87,7 +78,7 @@ with ui.column(align_items="center").classes("fixed-center").classes(
     )
 
     with ui.card().classes("w-full"):
-        ui.label("Converter coordenadas").classes('text-lg')
+        ui.label("Calcular coordenadas").classes('text-lg')
         with ui.grid(columns=2).classes("w-full"):
             ui.number(
                 label="Longitude decimal",
@@ -99,8 +90,8 @@ with ui.column(align_items="center").classes("fixed-center").classes(
             ).bind_value(decimal, "lat").props("clearable").classes("w-full")
 
         ui.button(
-            "Converter",
-            on_click=converterCoordenadas,
+            "Calcular",
+            on_click=converter_coordenadas,
         ).classes("w-full")
 
     with ui.card().classes("w-full"):
@@ -145,12 +136,11 @@ with ui.column(align_items="center").classes("fixed-center").classes(
                 ui.label().bind_text_from(diffs, "este")
                 ui.label().bind_text_from(diffs, "altura")
 
-        ui.button("Selecionar arquivo(s)", on_click=pick_file).classes("w-full")
+        ui.button("Calcular arquivo(s)", on_click=pick_file).classes("w-full")
 
 ui.run(
     favicon="👷",
     reload=False,
     window_size=(1000, 800),
-    dark=True,
     title="Conversor CSV -> Pontos",
 )
