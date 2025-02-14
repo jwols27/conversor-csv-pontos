@@ -62,9 +62,8 @@ async def pick_file():
     if files is None:
         return
 
-    conversor = ConversorCoordernadas()
     for file in files:
-        conversor.converter(file, diffs["norte"], diffs["este"], diffs["altura"])
+        ConversorCoordernadas.converter(file, diffs["norte"], diffs["este"], diffs["altura"])
         ui.notify(f"Arquivo {os.path.basename(file)} convertido!")
 
 
