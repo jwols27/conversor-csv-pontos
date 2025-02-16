@@ -1,6 +1,6 @@
 [project]
 name = "conversor-csv-pontos"
-version = "0.1.0"
+version = "1.2.0"
 description = "Aplicativo feito em Python que converte arquivos '.csv' gerados pelo Emlid Flow em um arquivo de pontos para importar no AutoCAD."
 requires-python = ">=3.13"
 dependencies = [

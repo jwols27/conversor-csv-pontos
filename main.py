@@ -37,10 +37,6 @@ async def escolher_arquivos():
         ui.notify('Nenhum arquivo selecionado.')
         return
 
-    for file in files:
-        ConversorCoordernadas.converter(file, diffs["norte"], diffs["este"], diffs["altura"])
-        ui.notify(f"Arquivo {os.path.basename(file)} convertido!")
-
     for arquivo in arquivos:
         nome_arquivo = os.path.basename(arquivo)
         try:
@@ -54,9 +50,10 @@ ui.add_head_html('<style>body {background-color: #e2e2e2; }</style>')
 with ui.column(align_items="center").classes("fixed-center").classes(
     "w-[80%] max-w-3xl"
 ):
-    ui.label(text="👷 Conversor CSV -> Pontos 👷").classes(
-        "text-4xl font-extrabold mb-[16px]"
-    )
+    with ui.card().classes("mb-[16px]"):
+        ui.label(text="👷 Conversor CSV ➡️ Pontos 👷").classes(
+            "text-4xl font-extrabold"
+        )
 
     with ui.card().classes("w-full"):
         ui.label("Calcular coordenadas").classes('text-lg')
@@ -71,7 +68,7 @@ with ui.column(align_items="center").classes("fixed-center").classes(
             ).bind_value(coordenadas, "latitude").props("clearable").classes("w-full")
 
         ui.button(
-            "Calcular",
+            "Calcular (SIRGAS2000)",
             on_click=converter_coordenadas,
         ).classes("w-full")
 
@@ -117,11 +114,11 @@ with ui.column(align_items="center").classes("fixed-center").classes(
                 ui.label().bind_text_from(diffs, "este")
                 ui.label().bind_text_from(diffs, "altura")
 
-        ui.button("Calcular arquivo(s)", on_click=pick_file).classes("w-full")
+        ui.button("Converter arquivo(s)", on_click=escolher_arquivos).classes("w-full")
 
 ui.run(
     favicon="👷",
     reload=False,
     window_size=(1000, 800),
-    title="Conversor CSV -> Pontos",
+    title="Conversor CSV ➡️ Pontos",
 )
